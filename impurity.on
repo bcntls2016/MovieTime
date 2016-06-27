@@ -1,0 +1,1 @@
+set object circle at ximp,zimp size 1.5 fc rgb ImpurityColor fillstyle solid noborder front

@@ -1,0 +1,1 @@
+set label FirstFrame at FFXPos,FFYPos front tc rgb TextColor font "Arial,85"

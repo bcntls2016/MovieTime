@@ -1,0 +1,1 @@
+set label Ekin at EkinXPos,EkinYPos front tc rgb TextColor font "Arial,70"

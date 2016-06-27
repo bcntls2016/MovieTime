@@ -1,0 +1,31 @@
+FC = ifort
+FCFLAGS = -c -O3 -ipo -xAVX -openmp -parallel -unroll
+LDFLAGS = -openmp
+PROGNAME1 = density
+PROGNAME2 = params
+
+all: $(PROGNAME1) $(PROGNAME2)
+
+#   Fortran objects
+OBJS1 = $(PROGNAME1).o
+OBJS2 = $(PROGNAME2).o
+
+.SUFFIXES: .f90 .f .o
+
+$(PROGNAME1): $(OBJS1)
+	$(FC) -o $(PROGNAME1) $(OBJS1) $(LDFLAGS)
+	
+$(PROGNAME2): $(OBJS2)
+	$(FC) -o $(PROGNAME2) $(OBJS2) $(LDFLAGS)
+
+.f90.o:
+	$(FC) $(FCFLAGS) -o $(@) $<;
+
+.f.o:
+	$(FC) $(FCFLAGS) -o $(@) $<;
+
+clean:
+	rm -f *.o *.bak *.lst *.mod $(PROGNAME1) $(PROGNAME2)
+
+proper:
+	rm -f *.o *.mod

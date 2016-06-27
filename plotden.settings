@@ -1,0 +1,11 @@
+denmax=0.06
+TextColor="#A9A9A9"
+TimeColor="#FFFFFF"
+ImpurityColor="#6c8d2c"
+
+FirstFrame="Xe-^4He_1_0_0_0 collision at v_0 = 200 m/s, b = 0"
+
+## Some impurity colors
+# Neutral, ground state (olive green):	#6c8d2c
+# Neutral, excited (blue-purple):		#7b6ceb
+# Ionised (red-orange):					#fc471e

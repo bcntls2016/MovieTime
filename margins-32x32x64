@@ -1,0 +1,19 @@
+set tmargin at screen 0.985
+set bmargin at screen 0.100
+#set rmargin at screen 0.85
+#set lmargin at screen 0
+
+ImgWidth=4320
+ImgHeight=4320
+
+TitleXPos=xmin+3
+TitleYPos=ymax-4
+ZimpXPos=xmax-30
+ZimpYPos=ymax-4
+VimpXPos=ZimpXPos
+VimpYPos=ZimpYPos-3
+EkinXPos=VimpXPos
+EkinYPos=VimpYPos-3
+FFXPos=xmin+3
+FFYPos=ymin+5
+
