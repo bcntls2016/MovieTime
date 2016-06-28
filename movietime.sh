@@ -238,9 +238,9 @@ plotImage () {
 			ymax='${zmax}'; ximp='${ximp}'; zimp='${zimp}'; vimp='${vimp}'; \
 			ekin='${ekin}'; t='${t}'; zcm='${zcm}'" plotden.gnu
 	done < Movie/Params/param-${ID}.dat
-	#pngtopnm denxz.png | pnmscale -reduce 4 | pnmtopng > Movie/Images/denxz-${ID}.png
-	#rm denxz.png
-	mv -v denxz.png Movie/Images/denxz-${ID}.png
+	pngtopnm denxz.png | pnmscale -reduce 4 | pnmtopng > Movie/Images/denxz-${ID}.png
+	rm denxz.png
+	#mv -v denxz.png Movie/Images/denxz-${ID}.png
 }
 
 plot1DImage () {
