@@ -1,6 +1,6 @@
 #!/bin/bash
 source movietime.settings
-
+# added a test line`
 MODE=$1
 DENPATH=$2
 
