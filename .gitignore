@@ -1,1 +1,9 @@
 .DS_Store
+density
+params
+energy
+firstframe
+impurity
+margins
+makefile
+*.o
