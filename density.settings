@@ -1,9 +1,9 @@
 &input
  nthreads = 8	! Max number of cpu threads to use
- denmode = 2 	! Put to 0 to see explanation
- parammode = 1	! Put to 0 to see explanation
- old = .true.	! Set to '.true.' if you want to use old wave function files with less information in the header.
- mimpur = 131.29d0	! Impurity mass in [u]
+ denmode = 3 	! Put to 0 to see explanation
+ parammode = 2	! Put to 0 to see explanation
+ old = .false.	! Set to '.true.' if you want to use old wave function files with less information in the header.
+ mimpur = 132.9054d0	! Impurity mass in [u]
  /
  
  ! Some commonly used relative isotopic masses (unified atomic mass / [u]) (NIST)

@@ -63,7 +63,7 @@ select case (parammode)
 		END IF
 	case default
 		write(*,*)
-		write(*,*) "You have chosen a 'parammode' unequal to {1,2}. Please modify '2Dden.settings' and choose one of:"
+		write(*,*) "You have chosen a 'parammode' unequal to {1,2}. Please modify 'density.settings' and choose one of:"
 		write(*,*)
 		write(*,*) "parammode = 1:	Static helium density/wave-function."
 		write(*,*) "parammode = 2:	Dynamic helium wave-function."
