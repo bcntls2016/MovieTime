@@ -7,3 +7,4 @@ impurity
 margins
 makefile
 *.o
+Movie/*
