@@ -168,6 +168,7 @@ selectFirstFrame () {
 }
 
 setFileID () {
+	echo ${1}
 	ID=${1##*/}
 	ID=${ID#*.}
 	ID=${ID%.*}
