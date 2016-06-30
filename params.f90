@@ -1,5 +1,4 @@
 PROGRAM Params
-#added test line
 
 IMPLICIT NONE
 character (len = 15)	:: a(4),b(4)				! Crap we don't need
