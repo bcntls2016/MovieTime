@@ -1,5 +1,5 @@
 PROGRAM Density
-! A line of utter bullshit
+
 IMPLICIT NONE
 character (len = 40)	:: fileden = "density.jogger.dat"! Input file containing the wavefunction
 character (len = 40)	:: outfile1 = "denz.dat"	! Output file containing the 2D density
