@@ -49,7 +49,6 @@ case $MODE in
 	4)
 		echo "Produce a single density and image..."
 		setFileID ${DENPATH}
-		echo ${DENPATH}
 		[ ! -f Movie/2D-densities/denxz-${ID}.dat ] && genDensity ${DENPATH}
 		[ ! -f Movie/Params/param-${ID}.dat ] && genParams ${DENPATH}
 		[ ! -f Movie/Images/denxz-${ID}.png ] && plotImage
