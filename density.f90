@@ -9,7 +9,6 @@ character (len = 40)	:: outfile4 = "param.dat"	! Output file containing the para
 character (len = 1) 	:: cchar = "#"				! Character to be skipped on routine titols
 logical (kind = 4)	:: OMP_Dynamic_Enable = .false.	! Enable/disable OpenMP dynamic resource allocation
 logical (kind = 4)	:: limp = .false.	! Treat impurity CM coord quantum/classical
-logical (kind = 4)	:: old	= .false.	! Treat impurity CM coord quantum/classical
 integer (kind = 4)	:: nx, ny, nz		! Number of points of the grid in each direction
 integer (kind = 4)	:: ix, iy, iz		! Counters for grid loops
 integer (kind = 4)	:: ninvar			! Number of components of lambda
@@ -28,7 +27,7 @@ complex(kind = 8), ALLOCATABLE	:: invar(:)			! Lambda (internal variables)
 complex(kind = 8), ALLOCATABLE	:: psi(:,:,:)		! Wave Function. Density = MOD(psi)**2
 
 40 format(5e26.15)
-namelist /input/ fileden,outfile1,outfile2,outfile3,outfile4,nthreads,denmode,parammode,old,mimpur
+namelist /input/ fileden,outfile1,outfile2,outfile3,outfile4,nthreads,denmode,parammode,mimpur
 read(5,nml=input)
 
 !$ CALL OMP_SET_DYNAMIC(OMP_Dynamic_Enable)

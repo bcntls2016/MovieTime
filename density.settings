@@ -1,8 +1,7 @@
 &input
  nthreads = 8	! Max number of cpu threads to use
  denmode = 3 	! Put to 0 to see explanation
- parammode = 2	! Put to 0 to see explanation
- old = .false.	! Set to '.true.' if you want to use old wave function files with less information in the header.
+ parammode = 4	! Put to 0 to see explanation
  mimpur = 132.9054d0	! Impurity mass in [u]
  /
  

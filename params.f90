@@ -1,7 +1,8 @@
 PROGRAM Params
 
 IMPLICIT NONE
-character (len = 15)	:: a(4),b(4)				! Crap we don't need
+character (len = 15)	:: a(4)				! Crap we don't need
+character (len = 15)	:: b(2)				! Crap we don't need
 character (len = 40)	:: fileden = "density.jogger.dat"! Input file containing the wavefunction
 character (len = 40)	:: outfile1 = "denxyz.dat"	! Output file containing the 2D density
 character (len = 40)	:: outfile2 = "denxz.dat"	! Output file containing the 2D density
@@ -9,7 +10,6 @@ character (len = 40)	:: outfile3 = "denz.dat"	! Output file containing the 1D de
 character (len = 40)	:: outfile4 = "param.dat"	! Output file containing the parameters
 character (len = 1) 	:: cchar = "#"				! Character to be skipped on routine titols
 logical (kind = 4)	:: limp = .false.	! Treat impurity CM coord quantum/classical
-logical (kind = 4)	:: old	= .false.	! Treat impurity CM coord quantum/classical
 integer (kind = 4)	:: nx, ny, nz		! Number of points of the grid in each direction
 integer (kind = 4)	:: isalto			! Number of lines to skip at reading
 integer (kind=4)	:: nthreads = 1		! Number of cpu cores to use 
@@ -26,13 +26,13 @@ real (kind = 8) , parameter	:: mp_u = 0.020614837554503673d0  	! proton mass in 
 real (kind = 8)	, parameter	::	Ktops=7.638235070684233d0		! Convert K to ps
 
 40 format(5e26.15)
-namelist /input/ fileden,outfile1,outfile2,outfile3,outfile4,nthreads,denmode,parammode,old,mimpur
+namelist /input/ fileden,outfile1,outfile2,outfile3,outfile4,nthreads,denmode,parammode,mimpur
 read(5,nml=input)
 
 mimpur = mimpur * mp_u
 
 select case (parammode)
-	case (1)
+	case (1) ! Statics
 		open (unit=1, file=fileden)
 		call titols(1,cchar,isalto)
 		read(1,*) xmax,ymax,zmax,hx,hy,hz,nx,ny,nz,limp,rimp
@@ -40,33 +40,60 @@ select case (parammode)
 		open(unit = 2, file = outfile4)
 		write(2,7106) xmax, zmax, rimp(1), rimp(3), 0, 0, 0
 		close(unit = 2)
-	case (2)
+	case (2) ! Dynamics
 		open (unit=1, file=fileden)
 		call titols(1,cchar,isalto)
 		read(1,*) xmax,ymax,zmax,hx,hy,hz,nx,ny,nz,rimp,vimp
 		close(1)
 		Ekin = 0.5 * mimpur * sum(vimp * vimp)
-		IF (.NOT. old) THEN
-			open(unit=1, file=fileden)
-			read(1,*)
-			read(1,*)
-			read(1,*) a,time
-			read(1,*) b,rcm
-			close(1)
-			open(unit = 2, file = outfile4)
-			write(2,7106) xmax, zmax, rimp(1), rimp(3), 100*vimp(3)/Ktops, Ekin, time, rcm(3)
-			close(2)
-		ELSE
-			open(unit = 2, file = outfile4)
-			write(2,7105) xmax, zmax, rimp(1), rimp(3), 100*vimp(3)/Ktops, Ekin
-			close(unit = 2)
-		END IF
+		open(unit = 2, file = outfile4)
+		write(2,7105) xmax, zmax, rimp(1), rimp(3), 100*vimp(3)/Ktops, Ekin
+		close(unit = 2)
+	case (3) ! Dynamics
+		open(unit=1, file=fileden)
+		read(1,*)
+		read(1,*)
+		read(1,*) a,time
+		read(1,*) b,rcm
+		rewind(1)
+		call titols(1,cchar,isalto)
+		read(1,*) xmax,ymax,zmax,hx,hy,hz,nx,ny,nz,rimp,vimp
+		close(1)
+		Ekin = 0.5 * mimpur * sum(vimp * vimp)		
+		open(unit = 2, file = outfile4)
+		write(2,7106) xmax, zmax, rimp(1), rimp(3), 100*vimp(3)/Ktops, Ekin, time, rcm(3)
+		close(2)
+	case (4) ! Dynamics
+		open(unit=1, file=fileden)
+		read(1,*)
+		read(1,*)
+		read(1,*)
+		read(1,*) a,time
+		read(1,*)
+		read(1,*)
+		read(1,*)
+		read(1,*) a,rcm
+		read(1,*)
+		read(1,*)
+		read(1,*)
+		read(1,*)
+		read(1,*)
+		read(1,*) b,Ekin
+		rewind(1)
+		call titols(1,cchar,isalto)
+		read(1,*) xmax,ymax,zmax,hx,hy,hz,nx,ny,nz,rimp,vimp
+		close(1)
+		open(unit = 2, file = outfile4)
+		write(2,7106) xmax, zmax, rimp(1), rimp(3), 100*vimp(3)/Ktops, Ekin, time, rcm(3)
+		close(2)
 	case default
 		write(*,*)
 		write(*,*) "You have chosen a 'parammode' unequal to {1,2}. Please modify 'density.settings' and choose one of:"
 		write(*,*)
 		write(*,*) "parammode = 1:	Static helium density/wave-function."
-		write(*,*) "parammode = 2:	Dynamic helium wave-function."
+		write(*,*) "parammode = 2:	Dynamic helium wave-function. Time and COM info added later."
+		write(*,*) "parammode = 3:	Dynamic helium wave-function. Time and COM info from WF-file"
+		write(*,*) "parammode = 4:	Dynamic helium wave-function. Time and COM info from WF-file, and more"
 		call EXIT(10)
 end select
 

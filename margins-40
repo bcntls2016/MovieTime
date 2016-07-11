@@ -12,5 +12,7 @@ ZimpXPos=xmax-26
 ZimpYPos=ymax-4
 VimpXPos=ZimpXPos
 VimpYPos=ZimpYPos-3
+EkinXPos=VimpXPos
+EkinYPos=VimpYPos-3
 FFXPos=xmin+3
 FFYPos=ymin+5
