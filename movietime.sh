@@ -43,7 +43,7 @@ case $MODE in
 			[ ! -f Movie/Params/param-${ID}.dat ] && genParams ${FILE}
 			[ ! -f Movie/Images/denxz-${ID}.png ] && plotImage	
 			[ ! -f Movie/1D-images/denz-${ID}.png ] && plot1DImage
-			echo "-------------------------------------"
+			echo
 		done
 		compileMovie
 		;;
