@@ -42,7 +42,8 @@ case $MODE in
 			[ ! -f Movie/2D-densities/denxz-${ID}.dat ] && genDensity ${FILE}
 			[ ! -f Movie/Params/param-${ID}.dat ] && genParams ${FILE}
 			[ ! -f Movie/Images/denxz-${ID}.png ] && plotImage	
-			[ ! -f Movie/1D-images/denz-${ID}.png ] && plot1DImage	
+			[ ! -f Movie/1D-images/denz-${ID}.png ] && plot1DImage
+			echo
 		done
 		compileMovie
 		;;
