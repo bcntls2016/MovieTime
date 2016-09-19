@@ -47,7 +47,7 @@ select case (parammode)
 		close(1)
 		Ekin = 0.5 * mimpur * sum(vimp * vimp)
 		open(unit = 2, file = outfile4)
-		write(2,7105) xmax, zmax, rimp(1), rimp(3), 100*vimp(3)/Ktops, Ekin
+		write(2,7105) xmax, zmax, rimp(1), rimp(3), 100*sqrt(sum(vimp*vimp))/Ktops, Ekin
 		close(unit = 2)
 	case (3) ! Dynamics
 		open(unit=1, file=fileden)
@@ -61,7 +61,7 @@ select case (parammode)
 		close(1)
 		Ekin = 0.5 * mimpur * sum(vimp * vimp)		
 		open(unit = 2, file = outfile4)
-		write(2,7106) xmax, zmax, rimp(1), rimp(3), 100*vimp(3)/Ktops, Ekin, time, rcm(3)
+		write(2,7106) xmax, zmax, rimp(1), rimp(3), 100*sqrt(sum(vimp*vimp))/Ktops, Ekin, time, rcm(3)
 		close(2)
 	case (4) ! Dynamics
 		open(unit=1, file=fileden)
@@ -84,11 +84,11 @@ select case (parammode)
 		read(1,*) xmax,ymax,zmax,hx,hy,hz,nx,ny,nz,rimp,vimp
 		close(1)
 		open(unit = 2, file = outfile4)
-		write(2,7106) xmax, zmax, rimp(1), rimp(3), 100*vimp(3)/Ktops, Ekin, time, rcm(3)
+		write(2,7106) xmax, zmax, rimp(1), rimp(3), 100*sqrt(sum(vimp*vimp))/Ktops, Ekin, time, rcm(3)
 		close(2)
 	case default
 		write(*,*)
-		write(*,*) "You have chosen a 'parammode' unequal to {1,2}. Please modify 'density.settings' and choose one of:"
+		write(*,*) "You have chosen a 'parammode' unequal to {1-4}. Please modify 'density.settings' and choose one of:"
 		write(*,*)
 		write(*,*) "parammode = 1:	Static helium density/wave-function."
 		write(*,*) "parammode = 2:	Dynamic helium wave-function. Time and COM info added later."
