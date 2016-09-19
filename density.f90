@@ -48,7 +48,7 @@ select case (denmode)
 	case (2)
 		open (unit=1, file=fileden)
 		call titols(1,cchar,isalto)
-		read(1,*) xmax,ymax,zmax,hx,hy,hz,nx,ny,nz,limp,rimp
+		read(1,*) xmax,ymax,zmax,hx,hy,hz,nx,ny,nz,limp,rimp,vimp
 		ALLOCATE (psi(nx,ny,nz))
 		ALLOCATE (den(nx,ny,nz))
 		ALLOCATE (x(nx))
